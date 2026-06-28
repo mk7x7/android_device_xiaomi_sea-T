@@ -9,14 +9,8 @@ DEVICE_PATH := device/xiaomi/sea
 # Inherit launch_with_vendor_ramdisk product
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
-# Enable virtual AB with vendor ramdisk
-# $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
-
 # Enforce generic ramdisk allow list
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
-
-# Enable updating of APEXes
-# $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -75,10 +69,6 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
-#TARGET_BUILD_SUPER_IMAGE := true
-
-# Product characteristics
-# PRODUCT_CHARACTERISTICS := nosdcard
 
 # Rootdir
 PRODUCT_PACKAGES += \
@@ -143,9 +133,6 @@ PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_30.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles_30.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
-# PRODUCT_PACKAGES += \
-#    ANGLE
-
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
@@ -161,10 +148,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
     $(LOCAL_PATH)/configs/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-goodix.kl
-
-# IFAA
-# PRODUCT_PACKAGES += \
-#    IFAAService
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -259,12 +242,6 @@ TARGET_EXCLUDES_AUDIOFX := true
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
-# Audio
-# $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
-
-# Media
-# $(call soong_config_set_bool,android_hardware_mediatek_codec2,link_v33_libstagefright_foundation,true)
-
 # Bluetooth
 SOONG_CONFIG_NAMESPACES += android_hardware_audio
 SOONG_CONFIG_android_hardware_audio += run_64bit
@@ -313,10 +290,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     MtkInCallService
 
-# Axion Performance Mode
-PERF_GOV_SUPPORTED := true
-PERF_DEFAULT_GOV := schedutil
-
 # ConsumerIR
 PRODUCT_PACKAGES += \
     android.hardware.ir-service.example
@@ -342,12 +315,9 @@ PRODUCT_COPY_FILES += \
 
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib, //$(DEVICE_PATH):libperfmgr-ext-xiaomi)
-# PRODUCT_PACKAGES += \
-#    android.hardware.power-service.lineage-libperfmgr \
-#    libmtkperf_client_vendor
 
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.pixel-libperfmgr 
+    android.hardware.power-service.pixel-libperfmgr
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -369,12 +339,7 @@ PRODUCT_PACKAGES += \
     com.android.nfc_extras \
     Tag
 
-# Parts
-#PRODUCT_PACKAGES += \
-#    XiaomiParts
-
 # WiFi
-#$(call soong_config_set_bool,wpa_supplicant_8,board_wlan_mediatek_stability,true)
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \

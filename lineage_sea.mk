@@ -14,9 +14,6 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from generic device
 $(call inherit-product, device/xiaomi/sea/device.mk)
 
-# Include GApps. The path to the gapps blobs may be different, check the vendor/gapps/arm64/Android.mk file and adjust accordingly.
-# $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
-
 PRODUCT_DEVICE := sea
 PRODUCT_NAME := lineage_sea
 PRODUCT_BRAND := Redmi
